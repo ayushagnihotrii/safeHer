@@ -19,7 +19,8 @@ export default function ConversationInput({ onAnalyze, isLoading }) {
         }
         setLoadingSamples(true);
         try {
-            const res = await fetch('http://localhost:8000/api/sample-conversations');
+            const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+            const res = await fetch(`${apiBase}/api/sample-conversations`);
             const data = await res.json();
             setSamplesData(data.samples);
             setShowSamples(true);
